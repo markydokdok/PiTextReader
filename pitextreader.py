@@ -30,8 +30,8 @@ import time
 
 ##### USER VARIABLES
 DEBUG	= 0	# Debug 0/1 off/on (writes to debug.log)
-SPEED   = 0.5   # Speech speed, 0.5 - 2.0 
-VOLUME  = 120	# Audio volume
+SPEED   = 0.8   # Speech speed, 0.5 - 2.0 
+VOLUME  = 190	# Audio volume
 
 # OTHER SETTINGS
 SOUNDS  = "/home/pi/PiTextReader/sounds/" # Directory for sound effect(s)
@@ -184,7 +184,7 @@ try:
     rt = RaspberryThread( function = stopTTS ) # Stop Speaking text
     
     volume(VOLUME)
-    speak("OK, ready")
+    speak("OK, ready, go")
     led(1)
     
     while True:
@@ -195,7 +195,7 @@ try:
     	    rt = RaspberryThread( function = stopTTS ) # Stop Speaking text
             led(1)
 	    time.sleep(0.5)	 
-            speak("OK, ready")
+            speak("OK, ready, go")
 	time.sleep(0.2)	 
     
 except KeyboardInterrupt:
