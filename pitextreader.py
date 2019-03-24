@@ -206,8 +206,8 @@ try:
                 
                 try:
                     # Copy file to destination
-                    shutil.copy2(picSource, c1)
-                    shutil.copy2(textSource, c2)
+                    shutil.os.copy2(picSource, c1)
+                    shutil.os.copy2(textSource, c2)
                    # E.g. source and destination is the same location
                 except shutil.Error as e:
                     print("Error: %s" % e)
