@@ -104,7 +104,7 @@ def stopTTS():
     global current_tts
     # If button pressed, then stop audio
     if GPIO.input(BTN1) == GPIO.LOW:
-    #logger.info('stopTTS()') 
+        logger.info('stopTTS()') 
         #current_tts.terminate()
         current_tts.kill()
         time.sleep(0.5)
