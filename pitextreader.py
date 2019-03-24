@@ -178,7 +178,7 @@ try:
             SOUNDS  = "/home/pi/PiTextReader/sounds/" # Directory for sound effect(s)
             #CAMERA  = "raspistill -cfx 128:128 --awb auto -rot 180 -t 500 -o /tmp/image.jpg"
             CAMERA  = "raspistill -cfx 128:128 --awb auto -rot 180 -t 500 -o /tmp/" + fileNameNya + ".jpg"
-            flashDrive = "/media/pi/TOPIX/"
+            flashDrive = "/mnt/usbstorage/PiTextReader/"
             
             # Btn 1
             getData()
@@ -195,8 +195,8 @@ try:
                 
                 #picDestination = "/media/pi/TOPIX/%s.jpg" % fileNameNya
                 #textDestination = "/media/pi/TOPIX/%s.txt" % fileNameNya
-                a1 = "/media/pi/TOPIX/%s.jpg" % fileNameNya
-                a2 = "/media/pi/TOPIX/%s.txt" % fileNameNya
+                a1 = "/mnt/usbstorage/PiTextReader/%s.jpg" % fileNameNya
+                a2 = "/mnt/usbstorage/PiTextReader/%s.txt" % fileNameNya
                 
                 b1 = a1.replace(':','')
                 c1 = b1.replace('-','')
