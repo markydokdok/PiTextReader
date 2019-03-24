@@ -206,10 +206,8 @@ try:
                 
                 try:
                     # Copy file to destination
-                    if os.geteuid() != 0:
-                        os.execvp('sudo', ['sudo', 'python3'] + sys.argv)
-                        shutil.copy2(picSource, c1)
-                        shutil.copy2(textSource, c2)
+                    shutil.copyfile(picSource, c1)
+                    shutil.copyfile(textSource, c2)
                    # E.g. source and destination is the same location
                 except shutil.Error as e:
                     print("Error: %s" % e)
