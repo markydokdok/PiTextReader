@@ -40,3 +40,4 @@ echo "Finished installation. See Readme.md for more info"
 echo "Reboot your pi now:  $ sudo reboot"
 echo 
 
+sudo reboot
