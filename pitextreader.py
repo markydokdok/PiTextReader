@@ -206,9 +206,9 @@ try:
                 
                 try:
                     # Copy file to destination
-                    shutil.os.copy2(picSource, c1)
-                    shutil.os.copy2(textSource, c2)
-                   # E.g. source and destination is the same location
+                    shutil.copy2(picSource, c1)
+                    shutil.copy2(textSource, c2)
+                    # E.g. source and destination is the same location
                 except shutil.Error as e:
                     print("Error: %s" % e)
                     # E.g. source or destination does not exist
