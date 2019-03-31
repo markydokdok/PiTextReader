@@ -12,8 +12,8 @@ fileNameNya = dt.datetime.now().isoformat()
 
 ##### USER VARIABLES
 DEBUG   = 0 # Debug 0/1 off/on (writes to debug.log)
-SPEED   = 0.8   # Speech speed, 0.5 - 2.0 
-VOLUME  = 100    # Audio volume
+SPEED   = 1   # Speech speed, 0.5 - 2.0 
+VOLUME  = 97    # Audio volume
 
 # GPIO BUTTONS
 BTN1    = 24    # The button!
@@ -88,15 +88,19 @@ def cleanText():
 def playTTS():
     logger.info('playTTS()') 
     global current_tts
-    #current_tts=subprocess.Popen(['/usr/bin/flite','-voice','slt','-f', '/tmp/text.txt'],
-    current_tts=subprocess.Popen(['/usr/bin/flite','-voice','slt','-f', '/tmp/' + fileNameNya + '.txt'],
-        stdin=subprocess.PIPE,stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,close_fds=True)
-    # Kick off stop audio thread 
-    rt.start()
-    # Wait until finished speaking (unless interrupted)
-    current_tts.communicate()
-    return
+    if os.stat("/tmp/" + fileNameNya + ".txt").st_size <= 9:
+        speak("Cannot Read the Document. Please Place the Paper Properly!")
+        return
+    else:
+        #current_tts=subprocess.Popen(['/usr/bin/flite','-voice','slt','-f', '/tmp/text.txt'],
+        current_tts=subprocess.Popen(['/usr/bin/flite','-voice','slt','-f', '/tmp/' + fileNameNya + '.txt'],
+            stdin=subprocess.PIPE,stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,close_fds=True)
+        # Kick off stop audio thread 
+        rt.start()
+        # Wait until finished speaking (unless interrupted)
+        current_tts.communicate()
+        return
 
 
 # Stop TTS (with Interrupt)
@@ -112,7 +116,7 @@ def stopTTS():
 
 # GRAB IMAGE AND CONVERT
 def getData():
-    logger.info('getData()') 
+    logger.info('getData()')
     #led(1) # Turn off Button LED
 
     # Take photo
@@ -177,7 +181,8 @@ try:
             # OTHER SETTINGS
             SOUNDS  = "/home/pi/PiTextReader/sounds/" # Directory for sound effect(s)
             #CAMERA  = "raspistill -cfx 128:128 --awb auto -rot 180 -t 500 -o /tmp/image.jpg"
-            CAMERA  = "raspistill -cfx 128:128 --awb auto -rot 180 -t 500 -o /tmp/" + fileNameNya + ".jpg"
+            #CAMERA  = "raspistill -cfx 128:128 --awb auto -rot 180 -t 500 -o /tmp/" + fileNameNya + ".jpg"
+            CAMERA  = "raspistill -cfx 128:128 -br 45 -co 90 -rot 180 -t 500 -o /tmp/" + fileNameNya + ".jpg"
             flashDrive = "/media/usb/PiTextReader/"
             
             # Btn 1
@@ -228,3 +233,4 @@ except KeyboardInterrupt:
 
 GPIO.cleanup() #Reset GPIOs
 sys.exit(0)
+
